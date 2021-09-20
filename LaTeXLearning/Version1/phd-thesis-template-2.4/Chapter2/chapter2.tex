@@ -41,7 +41,7 @@ In this paper, three functions are found: $e(x)$, $p(x)$ and $h(x)$, denoting a 
   p(s_i \le x \le s_{i+1})=-\left|x-\frac{s_i+s_{i+1}}{2}\right|+\frac{s_{i+1}-s_{i}}{2}
 \end{equation}
 \begin{equation}
-  p(s_i \le x \le s_{i+1})=\min(x-s_i, s_{i+1}-x)
+  p(s_i \le x \le s_{i+1})=\min[x-s_i, s_{i+1}-x]
 \end{equation}
 \subsubsection{fminbound}
 fminbound is a function included in the scipy optimisation library. It uses Brent's method allowing it to be quick in situations where labeling is quick and error is low.
