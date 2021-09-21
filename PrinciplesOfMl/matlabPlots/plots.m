@@ -12,8 +12,10 @@ for i = 1:size(comp, 1)
     comp{i, 3} = sqrt(var(comp{i,1}, 0, 2));
     comp{i, 4} = sqrt(mean(comp{i,1}.^2, 2));
 end
+a = figure();
+t = tiledlayout(2,2, "TileSpacing", 'compact');
 
-subplot(2,1,2)
+nexttile(3, [1, 2])
 plot([0, 15], [0, 0], 'k:', "HandleVisibility", "off")
 hold on
 for i = 1:size(comp, 1)
@@ -24,7 +26,7 @@ hold off
 update()
 ylabel("$\varepsilon$", "Interpreter", "latex")
 
-subplot(2,2,1)
+nexttile(1)
 for i = 1:size(comp, 1)
     plot(comp{i, 3}, colour(i), "HandleVisibility", "on")
     hold on
@@ -33,7 +35,7 @@ hold off
 update()
 ylabel("$\sigma_\varepsilon$", "Interpreter", "latex")
 
-subplot(2,2,2)
+nexttile
 for i = 1:size(comp, 1)
     plot(comp{i, 4}, colour(i), "HandleVisibility", "on")
     hold on
@@ -42,11 +44,11 @@ hold off
 update()
 ylabel("$\sqrt{\overline{\varepsilon^{2}}}$", "Interpreter", "latex")
 
-exportgraphics(gcf, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\Vector\comparison1.pdf", 'ContentType', 'vector')
-exportgraphics(gcf, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\PDF\comparison1.pdf", 'ContentType', 'vector')
+a.Position = [10 10 900 900];
+exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\Vector\comparison1.pdf", 'ContentType', 'vector')
+exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\PDF\comparison1.pdf", 'ContentType', 'vector')
 
 function update()
     xlabel("$x$", "Interpreter", "latex")
     legend("Linear", "fminbound", "Active Learning")
 end
-
