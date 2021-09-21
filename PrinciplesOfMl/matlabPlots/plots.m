@@ -12,7 +12,8 @@ for i = 1:size(comp, 1)
     comp{i, 3} = sqrt(var(comp{i,1}, 0, 2));
     comp{i, 4} = sqrt(mean(comp{i,1}.^2, 2));
 end
-a = figure();
+a = figure("visible", "off");
+
 t = tiledlayout(2,2, "TileSpacing", 'compact');
 
 nexttile(3, [1, 2])
