@@ -48,7 +48,14 @@ The next sample is then taken as $\text{argmax}[h(x)p(x)]$.
 fminbound is a function included in the scipy optimisation library. It uses Brent's method allowing it to be quick in situations where labeling is quick and error is low.
 \subsection[Comparison One]{Comparison on $\sin(x)+0.005x^2$}
 
+Each method discussed in [] was executed 50 times for each sample size between 2 and 15. 
 
+\begin{figure}[htbp!] 
+  \centering    
+  \includegraphics[width=1.0\textwidth]{comparison1.pdf}
+  \caption[First Comparison]{Comparison of the three methods discussed. The top left shows the standard deviation of each method, the top right shows the square of the residues, and the bottom shows the result of each sample with an average of the residue drawn on to guide the eye.}
+  \label{fig:firstComparison}
+\end{figure}
 
 
 \section*{Itemize}
