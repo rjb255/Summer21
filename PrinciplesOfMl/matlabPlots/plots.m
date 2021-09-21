@@ -1,9 +1,11 @@
 clear
 comp = {};
+
 comp{1, 1} = readmatrix("epsilon_linspace.csv");
 comp{2, 1} = readmatrix("epsilon_fmin.csv");
 comp{3, 1} = readmatrix("epsilon_aLearning.csv");
-
+x = repmat(2:size(comp{1,1}, 1)+1, size(comp{1,1}, 2), 1)';
+xp = (2:size(comp{1,1}, 1)+1)';
 colour = ["k", "b", "r"];
 marks = [".", "x", "+"];
 
@@ -12,16 +14,16 @@ for i = 1:size(comp, 1)
     comp{i, 3} = sqrt(var(comp{i,1}, 0, 2));
     comp{i, 4} = sqrt(mean(comp{i,1}.^2, 2));
 end
-a = figure("visible", "off");
+a = figure;%("visible", "off");
 
 t = tiledlayout(2,2, "TileSpacing", 'compact');
 
 nexttile(3, [1, 2])
-plot([0, 15], [0, 0], 'k:', "HandleVisibility", "off")
+plot(xp, zeros(size(xp)), 'k:', "HandleVisibility", "off")
 hold on
 for i = 1:size(comp, 1)
-    plot(comp{i, 1}, colour(i) + marks(i), "HandleVisibility", "off")
-    plot(comp{i, 2}, colour(i), "HandleVisibility", "on")
+    plot(xp, comp{i, 1}, colour(i) + marks(i), "HandleVisibility", "off")
+    plot(xp, comp{i, 2}, colour(i), "HandleVisibility", "on")
 end
 hold off
 update()
@@ -29,7 +31,7 @@ ylabel("$\varepsilon$", "Interpreter", "latex")
 
 nexttile(1)
 for i = 1:size(comp, 1)
-    plot(comp{i, 3}, colour(i), "HandleVisibility", "on")
+    plot(xp, comp{i, 3}, colour(i), "HandleVisibility", "on")
     hold on
 end
 hold off
@@ -38,7 +40,7 @@ ylabel("$\sigma_\varepsilon$", "Interpreter", "latex")
 
 nexttile
 for i = 1:size(comp, 1)
-    plot(comp{i, 4}, colour(i), "HandleVisibility", "on")
+    plot(xp, comp{i, 4}, colour(i), "HandleVisibility", "on")
     hold on
 end
 hold off
@@ -50,6 +52,6 @@ exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Fi
 exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\PDF\comparison1.pdf", 'ContentType', 'vector')
 
 function update()
-    xlabel("$x$", "Interpreter", "latex")
+    xlabel("Number of Samples", "Interpreter", "latex")
     legend("Linear", "fminbound", "Active Learning")
 end
