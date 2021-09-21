@@ -33,7 +33,7 @@ hold off
 update()
 ylabel("$\sigma_\varepsilon$", "Interpreter", "latex")
 
-subplot(2,2,2)
+subs = subplot(2,2,2)
 for i = 1:size(comp, 1)
     plot(comp{i, 4}, colour(i), "HandleVisibility", "on")
     hold on
@@ -43,8 +43,8 @@ update()
 ylabel("$\sqrt{\overline{\varepsilon^{2}}}$", "Interpreter", "latex")
 
 ax = gca;
-exportgraphics(ax, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\Vector\comparison1.pdf", 'ContentType', 'vector')
-exportgraphics(ax, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\PDF\comparison1.pdf", 'ContentType', 'vector')
+exportgraphics(subs, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\Vector\comparison1.pdf", 'ContentType', 'vector')
+exportgraphics(subs, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\PDF\comparison1.pdf", 'ContentType', 'vector')
 
 function update()
     xlabel("$x$", "Interpreter","latex")
