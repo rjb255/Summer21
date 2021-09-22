@@ -54,7 +54,7 @@ The smoothness attached to $e(x)$ is defined differently on each step. Here, all
 
 \subsection[Comparison One]{Comparison on $\sin(x)+0.005x^2$}
 
-Each method discussed in Section~\ref{ssec: algorithms} was executed 50 times for each sample size between 2 and 25. Of note, the active learning method was used in combination with a smoothing spline (using splrep \cite{2020SciPy-NMeth}) with ${s = \frac{\text{Number of Samples}^2}{200}}$. This is an arbitary choise, although it does lead to better results than fminbound on all explored metrics within this example when between 7 and 13 samples are used.
+Each method discussed in Section~\ref{ssec: algorithms} was executed 50 times for each sample size between 2 and 25. Figure~\ref{fig:firstComparison} shows the mean error, standard deviation, and root mean square of each method. When greater than nine samples were used, fminbound \cite{2020SciPy-NMeth} becomes the worst choice with each metric presented. For sample sizes beneath this, the problem specific approach appears worse. This is due to the discovery of the local minima at $4.27$. If this were indeed the global maxima, fminsearch would likely have failed to find the global minima in all 50 cases. With respect to the two active learning methods, the problem specific method did slightly better, although this could be attributed to chance based on the curve chosen.
 
 \begin{figure}[htbp!] 
   \centering    
