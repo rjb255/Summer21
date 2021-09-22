@@ -27,7 +27,8 @@ for i = 1:size(comp, 1)
 end
 hold off
 update()
-legend("Greatest Uncertainty", "fminbound", "Problem Specific","Location", "southoutside", "Orientation", "horizontal")
+leg = legend("Greatest Uncertainty", "fminbound", "Problem Specific","Location", "southoutside", "Orientation", "horizontal");
+set(leg, 'box', 'off')
 ylabel("$\varepsilon$", "Interpreter", "latex")
 
 nexttile(1)
