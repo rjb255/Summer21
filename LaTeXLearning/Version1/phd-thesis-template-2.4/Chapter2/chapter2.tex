@@ -50,6 +50,8 @@ This methodolgy has two underlying core principles: sparse areas reveal the most
   p(s_i \le x \le s_{i+1})=\min[x-s_i, s_{i+1}-x]
 \end{equation}
 
+The smoothness attached to $e(x)$ is defined differently on each step. Here, all steps have a smoothness factor of $0.01n$ until the final estimation is made. This simply becomes $\frac{n^2}{250}$. The reasoning behind these steps comes down to tolerance. At low $n$, there simply is not enough data for $\varepsilon$ to be noteworthy. Indeed, more couragous guesses are wanted while far from the maximum number of experimentations. There are two ways to achieve this: weight $p(x)$ higher or allow higher curvature on $e(x)$. As more data appears, this need reduces and the smoothness can be increased. For the final iteration, an awareness that large 
+
 There are several methods that may be used to enhance this strategy. Firstly, a smoothing spline between points allows for a non-parametric fit of the data to be used. Alternatively, a local regression fit may be used allowing for changes in sample density. Advanced methods using Baysian Statistics and advanced information theory may be used, although have been ommitted due to time restraints.
 
 
