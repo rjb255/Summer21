@@ -1,9 +1,9 @@
 clear
 comp = {};
-stage = "";
-comp{1, 1} = readmatrix(stage + "epsilon_linspace.csv");
-comp{2, 1} = readmatrix(stage + "epsilon_fmin.csv");
-comp{3, 1} = readmatrix(stage + "epsilon_aLearning.csv");
+stage = "2";
+comp{1, 1} = readmatrix("epsilon_linspace.csv");
+comp{2, 1} = readmatrix("epsilon_fmin.csv");
+comp{3, 1} = readmatrix("epsilon_aLearning.csv");
 x = repmat(2:size(comp{1,1}, 1)+1, size(comp{1,1}, 2), 1)';
 xp = (2:size(comp{1,1}, 1)+1)';
 colour = ["k", "b", "r"];
@@ -47,11 +47,11 @@ for i = 1:size(comp, 1)
 end
 hold off
 update()
-ylabel("$\left|\overline{\varepsilon^{2}}\right|$", "Interpreter", "latex")
+ylabel("$\left|\overline{\varepsilon}\right|$", "Interpreter", "latex")
 
 a.Position = [10 10 900 900];
-exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\Vector\comparison1.pdf", 'ContentType', 'vector')
-exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\PDF\comparison1.pdf", 'ContentType', 'vector')
+exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\Vector\comparison"+stage+".pdf", 'ContentType', 'vector')
+exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\PDF\comparison"+stage+".pdf", 'ContentType', 'vector')
 
 function update()
     xlabel("Number of Samples", "Interpreter", "latex")
