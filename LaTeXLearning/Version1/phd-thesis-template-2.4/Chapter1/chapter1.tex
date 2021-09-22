@@ -15,40 +15,21 @@ Finding the global minimum of a function within a set of boundaries is a problem
  
 \section{Problem Definition}
 \begin{equation}
+    \label{eq:y=f(x)}
     y=f(\bm{x})
 \end{equation}
-Given an equation $y=f(\bm{x})$ where $\bm{x}$ is a vector with $x_i [\alpha_i, \beta_i]$, and y is scalar, find the solution to $\text{argmin}[f(\bm{x})]$. The algorithm will be able to invoke $g(\bm{x})$ as shown in [] with $\epsilon$ representing an unknown random error.
+Given (\ref{eq:y=f(x)}) where $\bm{x}$ is a vector with $x_i\in[\alpha_i, \beta_i]$ and y is scalar, find the solution to $\text{argmin}[f(\bm{x})]$. The algorithm will be able to invoke $g(\bm{x})$ as shown in (\ref{gisf}) with $\epsilon$ representing an unknown random error.
 
 \begin{equation}
+    \label{gisf}
     g(\bm{x}) = f(\bm{x}) + \epsilon
 \end{equation}
 
-\nomenclature[z-DEM]{DEM}{Discrete Element Method}
-\nomenclature[z-FEM]{FEM}{Finite Element Method}
-\nomenclature[z-PFEM]{PFEM}{Particle Finite Element Method}
-\nomenclature[z-FVM]{FVM}{Finite Volume Method}
-\nomenclature[z-BEM]{BEM}{Boundary Element Method}
-\nomenclature[z-MPM]{MPM}{Material Point Method}
-\nomenclature[z-LBM]{LBM}{Lattice Boltzmann Method}
-\nomenclature[z-MRT]{MRT}{Multi-Relaxation 
-Time}
-\nomenclature[z-RVE]{RVE}{Representative Elemental Volume}
-\nomenclature[z-GPU]{GPU}{Graphics Processing Unit}
-\nomenclature[z-SH]{SH}{Savage Hutter}
-\nomenclature[z-CFD]{CFD}{Computational Fluid Dynamics}
-\nomenclature[z-LES]{LES}{Large Eddy Simulation}
-\nomenclature[z-FLOP]{FLOP}{Floating Point Operations}
-\nomenclature[z-ALU]{ALU}{Arithmetic Logic Unit}
-\nomenclature[z-FPU]{FPU}{Floating Point Unit}
-\nomenclature[z-SM]{SM}{Streaming Multiprocessors}
-\nomenclature[z-PCI]{PCI}{Peripheral Component Interconnect}
-\nomenclature[z-CK]{CK}{Carman - Kozeny}
-\nomenclature[z-CD]{CD}{Contact Dynamics}
-\nomenclature[z-DNS]{DNS}{Direct Numerical Simulation}
-\nomenclature[z-EFG]{EFG}{Element-Free Galerkin}
-\nomenclature[z-PIC]{PIC}{Particle-in-cell}
-\nomenclature[z-USF]{USF}{Update Stress First}
-\nomenclature[z-USL]{USL}{Update Stress Last}
-\nomenclature[s-crit]{crit}{Critical state}
-\nomenclature[z-DKT]{DKT}{Draft Kiss Tumble}
-\nomenclature[z-PPC]{PPC}{Particles per cell}
+\section{Principles of Active Learning}
+Active learning involves the intellignent sampling with the intent of reducing the total number of labeling required. Uses of this can be seen in image recognition, where 1000s of images may exist but only a handful of these images have been fully labelled. Each additional image requires the employment of a human to interpret the image. In order to reduce the amount of labelling, \cite{activeLearning} suggests there are three methods for reducing the number of required labels.
+\begin{itemize}
+    \item Highest Uncertainty
+    \item Competing Hypothesis
+    \item Predicted Model Change
+\end{itemize}
+Here, the highest uncetainty value implies knowledge to the probability of the output. Competing hypthesis theories involves several different models, where samples are chosen to test these hypotheses against each other. Finally, the predicted model change takes samples which are expected to have the largest impact on the modelling.

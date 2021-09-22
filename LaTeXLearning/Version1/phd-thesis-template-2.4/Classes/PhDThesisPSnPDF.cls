@@ -1261,6 +1261,7 @@ wish to left align your text}
 
 % Additional Packages
 \RequirePackage{bm}
+\RequirePackage{listings}
 \RequirePackage{amsmath}
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
