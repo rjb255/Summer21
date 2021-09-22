@@ -15,7 +15,7 @@
 \section{Outlining of Basic Principles}
 
 % Uncomment this line, when you have siunitx package loaded.
-By constraining $\bm{x}$ to one dimention allows for the problem to be simplified. Suppose ${f(x)=\sin(x)+0.05x^2}$ with ${x\in [-10, 10]}$ as shown in Figure~\ref{fig:firstFunction}. In this range, there are multiple minima with only one global minima. The task here is to successfully locate the minima situated at -1.428 (found through ananlytical differentiation and solving ${10\cos(x)+x=0}$). This will be compared against two benchmarks: linear spacing and the fminbound method available in the scipy package given the same number of function calls. $\epsilon$ will be chosen to be independent of $x$ and $y$ and fit a normal distribution such that ${\epsilon\sim N(0, 0.2)}$.
+By constraining $\bm{x}$ to one dimention allows for the problem to be simplified. Suppose ${f(x)=\sin(x)+0.05x^2}$ with ${x\in [-10, 10]}$ as shown in Figure~\ref{fig:firstFunction}. In this range, there are multiple minima with only one global minima. The task here is to successfully locate the minima situated at -1.428 (found through ananlytical differentiation and solving ${10\cos(x)+x=0}$). This will be compared against two benchmarks: linear spacing and the fminbound method available in the scipy package given the same number of function calls. $\epsilon$ will be chosen to be independent of $x$ and $y$ and fit a normal distribution such that ${\epsilon\sim N(0, 0.2^2)}$.
 
 \begin{figure}[htbp!] 
 \centering    
@@ -42,13 +42,13 @@ In this paper, three functions are found: $e(x)$, $p(x)$ and $h(x)$, denoting a 
   p(s_i \le x \le s_{i+1})=\min[x-s_i, s_{i+1}-x]
 \end{equation}
 
-The next sample is then taken as $\text{argmax}[h(x)p(x)]$.
+The next sample is then taken as ${\argmax_x{[h(x)p(x)]}}$.
 
 \subsubsection{fminbound}
 fminbound is a function included in the scipy optimisation library. It uses Brent's method allowing it to be quick in situations where labeling is quick and error is low.
 \subsection[Comparison One]{Comparison on $\sin(x)+0.005x^2$}
 
-Each method discussed in [] was executed 50 times for each sample size between 2 and 15. 
+Each method discussed in [] was executed 50 times for each sample size between 2 and 15. Of note, the active learning method was used in combination with a smoothing spline (using splrep) with ${s = \frac{\text{Number of Samples}^2}{200}}$. This is an arbitary choise, although it does lead to better results than fminbound on all explored metrics within this example when between 7 and 13 samples are used.
 
 \begin{figure}[htbp!] 
   \centering    
@@ -57,19 +57,19 @@ Each method discussed in [] was executed 50 times for each sample size between 2
   \label{fig:firstComparison}
 \end{figure}
 
-
-\section*{Itemize}
+\section{Deeper Analysis}
+\subsection{Random Function}
+To fully test these methods, random functions should be used. For this, serveral basic assumptions are made:
 \begin{itemize}
-\item The first topic is dull
-\item The second topic is duller
-\begin{itemize}
-\item The first subtopic is silly
-\item The second subtopic is stupid
+  \item The function and the first derivative are continuous and smooth.
+  \item The second derivtive is continuous
+  \item $x\in[-10, 10]$.
+  \item $f(-10)=0$.
+  \item $f^{\prime}(-10)\sim U(-4, 4)$.
+  \item $f^{\prime\prime}(-10)\sim U(-4, 4)$.
+  \item $f^{\prime\prime\prime}(x)\sim U(-4, 4)$.
 \end{itemize}
-\item The third topic is the dullest
-\end{itemize}
-
-\section*{Description}
+A simple script for this is given below
 \begin{description}
 \item[The first topic] is dull
 \item[The second topic] is duller
