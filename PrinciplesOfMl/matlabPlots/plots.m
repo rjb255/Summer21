@@ -53,5 +53,5 @@ exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Fi
 
 function update()
     xlabel("Number of Samples", "Interpreter", "latex")
-    legend("Linear", "fminbound", "Active Learning")
+    legend("Greatest Uncertainty", "fminbound", "Problem Specific")
 end
