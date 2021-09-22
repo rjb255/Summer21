@@ -1,9 +1,9 @@
 clear
 comp = {};
-
-comp{1, 1} = readmatrix("epsilon_linspace.csv");
-comp{2, 1} = readmatrix("epsilon_fmin.csv");
-comp{3, 1} = readmatrix("epsilon_aLearning.csv");
+stage = "";
+comp{1, 1} = readmatrix(stage + "epsilon_linspace.csv");
+comp{2, 1} = readmatrix(stage + "epsilon_fmin.csv");
+comp{3, 1} = readmatrix(stage + "epsilon_aLearning.csv");
 x = repmat(2:size(comp{1,1}, 1)+1, size(comp{1,1}, 2), 1)';
 xp = (2:size(comp{1,1}, 1)+1)';
 colour = ["k", "b", "r"];
@@ -12,7 +12,7 @@ marks = [".", "x", "+"];
 for i = 1:size(comp, 1)
     comp{i, 2} = mean(comp{i,1}, 2);
     comp{i, 3} = sqrt(var(comp{i,1}, 0, 2));
-    comp{i, 4} = sqrt(mean(comp{i,1}.^2, 2));
+    comp{i, 4} = abs(mean(comp{i,1}, 2));
 end
 a = figure;%("visible", "off");
 
@@ -27,6 +27,7 @@ for i = 1:size(comp, 1)
 end
 hold off
 update()
+legend("Greatest Uncertainty", "fminbound", "Problem Specific","Location", "southoutside", "Orientation", "horizontal")
 ylabel("$\varepsilon$", "Interpreter", "latex")
 
 nexttile(1)
@@ -45,7 +46,7 @@ for i = 1:size(comp, 1)
 end
 hold off
 update()
-ylabel("$\sqrt{\overline{\varepsilon^{2}}}$", "Interpreter", "latex")
+ylabel("$\left|\overline{\varepsilon^{2}}\right|$", "Interpreter", "latex")
 
 a.Position = [10 10 900 900];
 exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Figs\Vector\comparison1.pdf", 'ContentType', 'vector')
@@ -53,5 +54,5 @@ exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Fi
 
 function update()
     xlabel("Number of Samples", "Interpreter", "latex")
-    legend("Greatest Uncertainty", "fminbound", "Problem Specific")
+    
 end
