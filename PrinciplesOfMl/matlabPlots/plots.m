@@ -1,6 +1,6 @@
 clear
 comp = {};
-stage = "2";
+stage = "1";
 comp{1, 1} = readmatrix("epsilon_linspace.csv");
 comp{2, 1} = readmatrix("epsilon_fmin.csv");
 comp{3, 1} = readmatrix("epsilon_aLearning.csv");
@@ -55,6 +55,7 @@ exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Fi
 
 function update()
     xlabel("Number of Samples", "Interpreter", "latex")
+    xlim([0,25])
     ax = gca;
     set(ax, "TickLabelInterpreter", "latex")
 end
