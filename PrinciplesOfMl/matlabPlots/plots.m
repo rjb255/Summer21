@@ -27,8 +27,8 @@ for i = 1:size(comp, 1)
 end
 hold off
 update()
-leg = legend("Greatest Uncertainty", "fminbound", "Problem Specific","Location", "southoutside", "Orientation", "horizontal");
-set(leg, 'box', 'off')
+leg = legend("Greatest Uncertainty", "fminbound", "Problem Specific", "Location", "southoutside", "Orientation", "horizontal");
+set(leg, 'box', 'off', 'Interpreter', 'latex')
 ylabel("$\varepsilon$", "Interpreter", "latex")
 
 nexttile(1)
@@ -55,5 +55,6 @@ exportgraphics(t, "../LaTeXLearning\Version1\phd-thesis-template-2.4\Chapter2\Fi
 
 function update()
     xlabel("Number of Samples", "Interpreter", "latex")
-    
+    ax = gca;
+    set(ax, "TickLabelInterpreter", "latex")
 end
