@@ -30,11 +30,11 @@ By constraining $\bm{x}$ to one dimention allows for the problem to be simplifie
 fminbound is a function included in the scipy optimisation library \cite{2020SciPy-NMeth}. It uses Brent's method allowing it to be quick in situations where labeling is quick and error is low.
 
 \subsubsection{Greatest Uncertainty Active Learning}
-Without a basis for implemementing a certainty model on curve fitting, regions with maximum scarsity of samples will be chosen. In practice, this means for $n$ samples within the range $[\alpha, \beta]$, the sample $s_i$, $i\in\mathbb{Z}$, $i\in[1, n]$ will fall chosen will fall according to (\ref{eq: UAL}). A smoothing spline fit will be used for interpolation identically to problem specific active learning in Section~\ref{sssec:Active Learning}.
+Without a basis for implemementing a certainty model on curve fitting, regions with maximum scarsity of samples will be chosen. In practice, this means for $n$ samples within the range $[\alpha, \beta]$, the sample $s_i$, $i\in\mathbb{Z}$, $i\in[0, n-1]$ will fall chosen will fall according to (\ref{eq: UAL}). A smoothing spline fit will be used for interpolation identically to problem specific active learning in Section~\ref{sssec:Active Learning}.
 
 \begin{equation}
   \label{eq: UAL}
-  s_i=\alpha+i\frac{\beta-\alpha}{n+1}
+  s_i=\alpha+i\frac{\beta-\alpha}{n}
 \end{equation}
 
 \subsubsection{Problem Specific Active Learning}
