@@ -3,7 +3,7 @@
 %****************************** Second Chapter *********************************
 %*******************************************************************************
 
-\chapter{Simple 1-Dimentional Problem}
+\chapter{Simple 1-Dimensional Problem}
 
 \ifpdf
     \graphicspath{{Chapter2/Figs/Raster/}{Chapter2/Figs/PDF/}{Chapter2/Figs/}}
@@ -15,7 +15,7 @@
 \section{Outlining of Basic Principles}
 
 % Uncomment this line, when you have siunitx package loaded.
-By constraining $\bm{x}$ to one dimention allows for the problem to be simplified. Suppose ${f(x)=\sin(x)+0.05x^2}$ with ${x\in [-10, 10]}$ as shown in Figure~\ref{fig:firstFunction}. In this range, there are multiple minima with only one global minima. The task here is to successfully locate the minima situated at -1.428 (found through ananlytical differentiation and solving ${10\cos(x)+x=0}$). Three methods will be used here: $\text{fminbound}$ \cite{2020SciPy-NMeth}, greatest uncertainty active learning, and problem specific active learning (explained in Section~\ref{sssec:Active Learning}). $\epsilon$ will be chosen to be independent of $x$ and $y$ and fit a normal distribution such that ${\epsilon\sim N(0, 0.2^2)}$.
+By constraining $\bm{x}$ to one dimension allows for the problem to be simplified. Suppose ${f(x)=\sin(x)+0.05x^2}$ with ${x\in [-10, 10]}$ as shown in Figure~\ref{fig:firstFunction}. In this range, there are multiple minima with only one global minima. The task here is to successfully locate the minima situated at -1.428 (found through analytical differentiation and solving ${10\cos(x)+x=0}$). Three methods will be used here: $\text{fminbound}$ \cite{2020SciPy-NMeth}, greatest uncertainty active learning, and problem specific active learning (explained in Section~\ref{sssec:Active Learning}). $\epsilon$ will be chosen to be independent of $x$ and $y$ and fit a normal distribution such that ${\epsilon\sim N(0, 0.2^2)}$.
 
 \begin{figure}[htbp!] 
 \centering    
@@ -27,10 +27,10 @@ By constraining $\bm{x}$ to one dimention allows for the problem to be simplifie
 \subsection{Algorithms}
 \label{ssec: algorithms}
 \subsubsection{fminbound}
-fminbound is a function included in the scipy optimisation library \cite{2020SciPy-NMeth}. It uses Brent's method allowing it to be quick in situations where labeling is quick and error is low.
+fminbound is a function included in the scipy optimisation library \cite{2020SciPy-NMeth}. It uses Brent's method allowing it to be quick in situations where labelling is quick and error is low.
 
 \subsubsection{Greatest Uncertainty Active Learning}
-Without a basis for implemementing a certainty model on curve fitting, regions with maximum scarsity of samples will be chosen. In practice, this means for $n$ samples within the range $[\alpha, \beta]$, the sample $s_i$, $i\in\mathbb{Z}$, $i\in[0, n-1]$ will fall chosen will fall according to (\ref{eq: UAL}). A smoothing spline fit will be used for interpolation identically to problem specific active learning in Section~\ref{sssec:Active Learning}.
+Without a basis for implementing a certainty model on curve fitting, regions with maximum scarcity of samples will be chosen. In practice, this means for $n$ samples within the range $[\alpha, \beta]$, the sample $s_i$, $i\in\mathbb{Z}$, $i\in[0, n-1]$ will fall chosen will fall according to (\ref{eq: UAL}). A smoothing spline fit will be used for interpolation identically to problem specific active learning in Section~\ref{sssec:Active Learning}.
 
 \begin{equation}
   \label{eq: UAL}
@@ -39,7 +39,7 @@ Without a basis for implemementing a certainty model on curve fitting, regions w
 
 \subsubsection{Problem Specific Active Learning}
 \label{sssec:Active Learning}
-This methodolgy has two underlying core principles: sparse areas reveal the most information and minimal areas reveal information to the location of the minima. Combining these allows for better decision making with regards to the next sample to choose. A smoothing spline is used to interpolate providing information for $e(x)$ in (\ref{eq: height}). Functions $h(x)$ and $p(x)$ (see (\ref{eq: height}) and (\ref{eq: scarcity})) allow for the minimal areas and most sparse areas to be found respectively. The next sample is chosen at ${\argmax_x{[h(x)p(x)]}}$.
+This methodology has two underlying core principles: sparse areas reveal the most information and minimal areas reveal information to the location of the minima. Combining these allows for better decision making with regards to the next sample to choose. A smoothing spline is used to interpolate providing information for $e(x)$ in (\ref{eq: height}). Functions $h(x)$ and $p(x)$ (see (\ref{eq: height}) and (\ref{eq: scarcity})) allow for the minimal areas and most sparse areas to be found respectively. The next sample is chosen at ${\argmax_x{[h(x)p(x)]}}$.
 
 \begin{equation}
   \label{eq: height}
@@ -50,7 +50,7 @@ This methodolgy has two underlying core principles: sparse areas reveal the most
   p(s_i \le x \le s_{i+1})=\min[x-s_i, s_{i+1}-x]
 \end{equation}
 
-The smoothness attached to $e(x)$ is defined differently on each step. Here, all steps have a smoothness factor of $0.01n$ until the final estimation is made. This simply becomes $\frac{n}{30}$. The reasoning behind these steps comes down to tolerance. At low $n$, there simply is not enough data for $\varepsilon$ to be noteworthy. Indeed, more couragous guesses are wanted while far from the maximum number of experimentations. There are two ways to achieve this: weight $p(x)$ higher or allow higher curvature on $e(x)$. As more data appears, this need reduces and the smoothness can be increased. For the final iteration, a smoother curve is wanted so scarse data and uncertainty does not negatively affect the result.
+The smoothness attached to $e(x)$ is defined differently on each step. Here, all steps have a smoothness factor of $0.01n$ until the final estimation is made. This simply becomes $\frac{n}{30}$. The reasoning behind these steps comes down to tolerance. At low $n$, there simply is not enough data for $\varepsilon$ to be noteworthy. Indeed, more courageous guesses are wanted while far from the maximum number of experimentations. There are two ways to achieve this: weight $p(x)$ higher or allow higher curvature on $e(x)$. As more data appears, this need reduces and the smoothness can be increased. For the final iteration, a smoother curve is wanted so scarce data and uncertainty does not negatively affect the result.
 
 \subsection[Comparison One]{Comparison on $\sin(x)+0.005x^2$}
 \label{ssec:comp1}
@@ -65,7 +65,7 @@ Each method discussed in Section~\ref{ssec: algorithms} was executed 50 times fo
 
 \section{Deeper Analysis}
 \subsection{Random Function}
-To fully test these methods, random functions should be used. For this, serveral basic assumptions are made:
+To fully test these methods, random functions should be used. For this, several basic assumptions are made:
 \begin{itemize}
   \item The function is continuous.
   \item $x\in[-10, 10]$.
@@ -100,7 +100,7 @@ A simple script for this is in Listing~\ref{lst:randomFunc}, which has been desi
 \end{lstlisting}
 
 \subsection{Comparison on Random Functions}
-As in Section~\ref{ssec:comp1}, a comparison between the three methods was carried out on samples sizes ranging from 2 to 25. These were tested on 50 different random functions, as generated by Listing~\ref{lst:randomFunc}. The problem specific algorithm surpassed the other methods in both metrics measured. Further, both active learning methods routinely surpassed fminbound. This is likely due to fminbound finding local minima and cnverging upon these rather than exploring the remainder of the function.
+As in Section~\ref{ssec:comp1}, a comparison between the three methods was carried out on samples sizes ranging from 2 to 25. These were tested on 50 different random functions, as generated by Listing~\ref{lst:randomFunc}. The problem specific algorithm surpassed the other methods in both metrics measured. Further, both active learning methods routinely surpassed fminbound. This is likely due to fminbound finding local minima and converging upon these rather than exploring the remainder of the function.
 
 \begin{figure}[htbp!] 
   \centering    

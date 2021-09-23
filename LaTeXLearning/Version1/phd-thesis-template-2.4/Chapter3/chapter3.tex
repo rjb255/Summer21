@@ -12,13 +12,13 @@
 \fi
 
 \section{Further Work}
-Allowing for $n$-dimentional minimisation follows routine procedures. Indeed, simply using $\text{splprep}$ from the $\text{scipy.optimize}$ package allows for this to be modified to accept n-dimentions. All other procedures remain the same. This was not evaluated within this report as $n$-dimentional functions to evaluate against is difficult to naturally produce. Further work was taken to attempt to converge upon suitable smoothing factors as a function of sample size, although this proved to be unreliable.
+Allowing for $n$-dimensional minimisation follows routine procedures. Indeed, simply using $\text{splprep}$ from the $\text{scipy.optimize}$ package allows for this to be modified to accept n-dimensions. All other procedures remain the same. This was not evaluated within this report as $n$-dimensional functions to evaluate against is difficult to naturally produce. Further work was taken to attempt to converge upon suitable smoothing factors as a function of sample size, although this proved to be unreliable.
 
-Investigation into different non-parametric curve fitting may be made. It is expected that a combination of locally estimated scatterplot smoothing (LOESS) and smoothing splines may be used: LOESS for heavily sampled regions and smoothing splines for scarser areas. Alternatively, regression bins may be used under the assumption that the minima can be approximated to quadratic. Upon estimation of the width of the minima, a suitable bin size may be determined.
+Investigation into different non-parametric curve fitting may be made. It is expected that a combination of locally estimated scatterplot smoothing (LOESS) and smoothing splines may be used: LOESS for heavily sampled regions and smoothing splines for sparser areas. Alternatively, regression bins may be used under the assumption that the minima can be approximated to quadratic. Upon estimation of the width of the minima, a suitable bin size may be determined.
 
 Care is needed when choosing values minima with low data representation. This is the cause for many of the extreme deviations seen within the problem specific active learning methodology. To combat this, a coupling of estimated minima and certainty could be tailored. 
 
 \section{Conclusion}
 Within this reported, it has repeatedly been shown that active learning plays a role in optimisation in situations where noisy data and expensive function calls are present. It also demonstrates the information that is available during experimentation, which may be undervalued. By exploiting this information, time and resources may be saved.
 
-Further efforts are needed to improve this methodology. Importantly, using this on n-dimentional problems since virtually all experiments have more than one parameter. Secondly, different fits should be compared, potentially even leading to competing hypothesis active learning.
+Further efforts are needed to improve this methodology. Importantly, using this on n-dimensional problems since virtually all experiments have more than one parameter. Secondly, different fits should be compared, potentially even leading to competing hypothesis active learning.
